@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL to QR Code Generator</title>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        #url-input {
+            width: 80%;
+            padding: 10px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        #generate-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        #download-btn {
+            background-color: #2196F3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            display: none;
+        }
+        #generate-btn:hover {
+            background-color: #45a049;
+        }
+        #download-btn:hover {
+            background-color: #0b7dda;
+        }
+        .instructions {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            text-align: left;
+        }
+        .qr-wrapper {
+            display: inline-block;
+            
+            border: 1px solid #eee;
+            border-radius: 8px;
+            background: white;
+            margin: 30px auto;
+        }
+        .qr-container {
+            position: relative;
+            display: inline-block;
+        }
+        #qrcode {
+            padding: 5px;
+        }
+        .qr-center-icons {
+            position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 5px;
+    display: flex
+;
+    gap: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+        }
+        .qr-center-icon {
+            font-size: 30px;
+        }
+        .fa-google {
+            color: #DB4437;
+        }
+        .fa-whatsapp {
+            color: #25D366;
+        }
+        .fa-facebook {
+            color: #1877F2;
+        }
+        .fa-twitter {
+            color: #1DA1F2;
+        }
+        .qr-center-icons img{
+            width: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>URL to QR Code Generator</h1>
+    
+    <div class="instructions">
+        <p>Enter a URL below and click "Generate QR Code" to create a scannable QR code that links to your website.</p>
+    </div>
+    
+    <input type="url" id="url-input" placeholder="Enter URL (e.g., https://example.com)" required>
+    <button id="generate-btn">Generate QR Code</button>
+    
+    <div class="qr-wrapper" id="qr-wrapper">
+        <div class="qr-container">
+            <div id="qrcode"></div>
+            <div class="qr-center-icons">
+                
+                <img src="./assets/google.png" alt="">
+                <!-- <i class="fab fa-whatsapp qr-center-icon"></i>
+                <i class="fab fa-facebook qr-center-icon"></i>
+                <i class="fab fa-twitter qr-center-icon"></i> -->
+            </div>
+        </div>
+    </div>
+    
+    <button id="download-btn">Download QR Code</button>
+    
+    <script>
+        document.getElementById('generate-btn').addEventListener('click', function() {
+            const url = document.getElementById('url-input').value.trim();
+            
+            if (!url) {
+                alert('Please enter a valid URL');
+                return;
+            }
+            
+            document.getElementById('qrcode').innerHTML = '';
+            
+            new QRCode(document.getElementById('qrcode'), {
+                text: url,
+                width: 200,
+                height: 200,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+            
+            document.getElementById('download-btn').style.display = 'inline-block';
+        });
+        
+        document.getElementById('download-btn').addEventListener('click', function() {
+            const wrapper = document.getElementById('qr-wrapper');
+            
+            html2canvas(wrapper, {
+                backgroundColor: null,
+                scale: 2 // Higher quality
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'custom-qr-code.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        });
+    </script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</body>
+</html>
