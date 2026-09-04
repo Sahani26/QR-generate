@@ -170,7 +170,7 @@
     </script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </body>
-</html> -->
+</html> --> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -196,35 +196,19 @@
             color: #333;
         }
 
-        /* =========================
-           LOGO SELECTOR
-        ========================== */
-
         .logo-selector {
-            margin: 25px 0;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-
-        .logo-selector h3 {
-            margin-top: 0;
-            margin-bottom: 15px;
+            margin: 20px 0;
         }
 
         .logo-options {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
         .logo-option {
             cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
         }
 
         .logo-option input {
@@ -232,47 +216,30 @@
         }
 
         .logo-box {
-            width: 60px;
-            height: 60px;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
+            width: 50px;
+            height: 50px;
             border: 2px solid #ddd;
             border-radius: 50%;
-
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: white;
+        }
 
-            transition: 0.2s;
+        .logo-option input:checked + .logo-box {
+            border-color: #2196F3;
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.15);
         }
 
         .logo-box i {
+            font-size: 28px;
+        }
+
+        .google-logo {
+            font-family: Arial, sans-serif;
             font-size: 30px;
-        }
-
-        .logo-box img {
-            width: 35px;
-            height: 35px;
-            object-fit: contain;
-        }
-
-        /* Selected logo */
-        .logo-option input:checked + .logo-box {
-            border: 3px solid #2196F3;
-            box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.15);
-            transform: scale(1.08);
-        }
-
-        .logo-name {
-            font-size: 13px;
-            color: #555;
-        }
-
-        /* Brand Colors */
-
-        .fa-google {
-            color: #DB4437;
+            font-weight: bold;
+            color: #4285F4;
         }
 
         .fa-whatsapp {
@@ -286,10 +253,6 @@
         .fa-x-twitter {
             color: #000;
         }
-
-        /* =========================
-           FORM
-        ========================== */
 
         #url-input {
             width: 80%;
@@ -310,10 +273,6 @@
             margin-bottom: 20px;
         }
 
-        #generate-btn:hover {
-            background-color: #45a049;
-        }
-
         #download-btn {
             background-color: #2196F3;
             color: white;
@@ -324,6 +283,10 @@
             font-size: 16px;
             margin-top: 10px;
             display: none;
+        }
+
+        #generate-btn:hover {
+            background-color: #45a049;
         }
 
         #download-btn:hover {
@@ -338,12 +301,8 @@
             text-align: left;
         }
 
-        /* =========================
-           QR
-        ========================== */
-
         .qr-wrapper {
-            display: inline-block;
+            display: none;
             border: 1px solid #eee;
             border-radius: 8px;
             background: white;
@@ -364,28 +323,18 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-
-            width: 48px;
-            height: 48px;
-
             background: white;
-
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
         }
 
         .qr-center-icons i {
             font-size: 30px;
-        }
-
-        .qr-center-icons img {
-            width: 35px;
-            height: 35px;
-            object-fit: contain;
         }
     </style>
 </head>
@@ -396,100 +345,60 @@
 
     <div class="instructions">
         <p>
-            Enter a URL below, select your logo and click
-            <strong>Generate QR Code</strong>.
+            Enter a URL below, select a logo and click
+            "Generate QR Code".
         </p>
     </div>
 
 
-    <!-- =========================
-         LOGO SELECTION
-    ========================== -->
+    <!-- Logo Selector -->
 
     <div class="logo-selector">
 
-        <h3>Select QR Logo</h3>
-
         <div class="logo-options">
 
-            <!-- Google -->
             <label class="logo-option">
-
-                <input
-                    type="radio"
-                    name="qr-logo"
-                    value="google"
-                    checked
-                >
+                <input type="radio"
+                       name="qr-logo"
+                       value="google"
+                       checked>
 
                 <div class="logo-box">
-                    <img src="./assets/google.png" alt="Google">
+                    <span class="google-logo">G</span>
                 </div>
-
-                <span class="logo-name">
-                    Google
-                </span>
-
             </label>
 
 
-            <!-- WhatsApp -->
             <label class="logo-option">
-
-                <input
-                    type="radio"
-                    name="qr-logo"
-                    value="whatsapp"
-                >
+                <input type="radio"
+                       name="qr-logo"
+                       value="whatsapp">
 
                 <div class="logo-box">
                     <i class="fab fa-whatsapp"></i>
                 </div>
-
-                <span class="logo-name">
-                    WhatsApp
-                </span>
-
             </label>
 
 
-            <!-- Facebook -->
             <label class="logo-option">
-
-                <input
-                    type="radio"
-                    name="qr-logo"
-                    value="facebook"
-                >
+                <input type="radio"
+                       name="qr-logo"
+                       value="facebook">
 
                 <div class="logo-box">
                     <i class="fab fa-facebook"></i>
                 </div>
-
-                <span class="logo-name">
-                    Facebook
-                </span>
-
             </label>
 
 
-            <!-- Twitter / X -->
             <label class="logo-option">
-
-                <input
-                    type="radio"
-                    name="qr-logo"
-                    value="twitter"
-                >
+                <input type="radio"
+                       name="qr-logo"
+                       value="twitter">
 
                 <div class="logo-box">
                     <i class="fab fa-x-twitter"></i>
                 </div>
-
-                <span class="logo-name">
-                    X
-                </span>
-
             </label>
 
         </div>
@@ -497,14 +406,10 @@
     </div>
 
 
-    <!-- URL -->
-
-    <input
-        type="url"
-        id="url-input"
-        placeholder="Enter URL (e.g., https://example.com)"
-        required
-    >
+    <input type="url"
+           id="url-input"
+           placeholder="Enter URL (e.g., https://example.com)"
+           required>
 
     <br>
 
@@ -512,25 +417,15 @@
         Generate QR Code
     </button>
 
-    <br>
 
-
-    <!-- QR CODE -->
-
-    <div
-        class="qr-wrapper"
-        id="qr-wrapper"
-        style="display:none;"
-    >
+    <div class="qr-wrapper" id="qr-wrapper">
 
         <div class="qr-container">
 
             <div id="qrcode"></div>
 
-            <div
-                class="qr-center-icons"
-                id="qr-center-logo"
-            >
+            <div class="qr-center-icons"
+                 id="qr-center-logo">
             </div>
 
         </div>
@@ -539,192 +434,209 @@
 
     <br>
 
+
     <button id="download-btn">
-        Download QR Code
+        <i class="fas fa-download"></i>
+        Download PNG
     </button>
 
-
-    <!-- html2canvas -->
 
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 
     <script>
 
-        /* =================================
-           GET SELECTED LOGO
-        ================================= */
-
-        function getSelectedLogo() {
+        function updateLogo() {
 
             const selected =
                 document.querySelector(
                     'input[name="qr-logo"]:checked'
                 ).value;
 
-            const logoContainer =
+            const logo =
                 document.getElementById('qr-center-logo');
 
 
             if (selected === 'google') {
 
-                logoContainer.innerHTML =
-                    '<img src="./assets/google.png" alt="Google">';
+                logo.innerHTML =
+                    '<span class="google-logo">G</span>';
 
             }
-
             else if (selected === 'whatsapp') {
 
-                logoContainer.innerHTML =
-                    '<i class="fab fa-whatsapp fa-whatsapp"></i>';
+                logo.innerHTML =
+                    '<i class="fab fa-whatsapp"></i>';
 
             }
-
             else if (selected === 'facebook') {
 
-                logoContainer.innerHTML =
-                    '<i class="fab fa-facebook fa-facebook"></i>';
+                logo.innerHTML =
+                    '<i class="fab fa-facebook"></i>';
 
             }
-
             else if (selected === 'twitter') {
 
-                logoContainer.innerHTML =
-                    '<i class="fab fa-x-twitter fa-x-twitter"></i>';
+                logo.innerHTML =
+                    '<i class="fab fa-x-twitter"></i>';
 
             }
 
         }
 
 
-        /* =================================
-           UPDATE LOGO IMMEDIATELY
-        ================================= */
+        document.querySelectorAll(
+            'input[name="qr-logo"]'
+        ).forEach(function (radio) {
 
-        document
-            .querySelectorAll('input[name="qr-logo"]')
-            .forEach(function(radio) {
+            radio.addEventListener(
+                'change',
+                updateLogo
+            );
 
-                radio.addEventListener('change', function() {
-
-                    getSelectedLogo();
-
-                });
-
-            });
+        });
 
 
-        /* =================================
-           GENERATE QR CODE
-        ================================= */
-
-        document
-            .getElementById('generate-btn')
-            .addEventListener('click', function() {
+        document.getElementById(
+            'generate-btn'
+        ).addEventListener(
+            'click',
+            function () {
 
                 const url =
-                    document
-                        .getElementById('url-input')
-                        .value
-                        .trim();
+                    document.getElementById(
+                        'url-input'
+                    ).value.trim();
 
 
                 if (!url) {
 
-                    alert('Please enter a valid URL');
+                    alert(
+                        'Please enter a valid URL'
+                    );
 
                     return;
 
                 }
 
 
-                /* Clear old QR */
+                document.getElementById(
+                    'qrcode'
+                ).innerHTML = '';
 
-                document.getElementById('qrcode').innerHTML = '';
-
-
-                /* Generate QR */
 
                 new QRCode(
-                    document.getElementById('qrcode'),
+                    document.getElementById(
+                        'qrcode'
+                    ),
                     {
                         text: url,
-
                         width: 200,
                         height: 200,
 
                         colorDark: "#000000",
                         colorLight: "#ffffff",
 
-                        /* High correction level
-                           because logo covers center */
-                        correctLevel: QRCode.CorrectLevel.H
+                        correctLevel:
+                            QRCode.CorrectLevel.H
                     }
                 );
 
 
-                /* Put selected logo */
+                updateLogo();
 
-                getSelectedLogo();
-
-
-                /* Show QR */
 
                 document.getElementById(
                     'qr-wrapper'
-                ).style.display = 'inline-block';
+                ).style.display =
+                    'inline-block';
 
-
-                /* Show download button */
 
                 document.getElementById(
                     'download-btn'
-                ).style.display = 'inline-block';
+                ).style.display =
+                    'inline-block';
 
-            });
+            }
+        );
 
 
-        /* =================================
-           DOWNLOAD QR
-        ================================= */
+        document.getElementById(
+            'download-btn'
+        ).addEventListener(
+            'click',
+            async function () {
 
-        document
-            .getElementById('download-btn')
-            .addEventListener('click', function() {
+                const button = this;
+
+                button.disabled = true;
+
+                button.innerHTML =
+                    '<i class="fas fa-spinner fa-spin"></i> Downloading...';
+
 
                 const wrapper =
-                    document.getElementById('qr-wrapper');
+                    document.getElementById(
+                        'qr-wrapper'
+                    );
 
 
-                html2canvas(wrapper, {
+                try {
 
-                    backgroundColor: "#ffffff",
+                    const canvas =
+                        await html2canvas(
+                            wrapper,
+                            {
+                                backgroundColor:
+                                    "#ffffff",
 
-                    scale: 4,
+                                scale: 4,
 
-                    useCORS: true
+                                useCORS: true
+                            }
+                        );
 
-                }).then(function(canvas) {
 
                     const link =
-                        document.createElement('a');
+                        document.createElement(
+                            'a'
+                        );
+
 
                     link.download =
-                        'custom-qr-code.png';
+                        'qr-code-with-icon.png';
+
 
                     link.href =
-                        canvas.toDataURL('image/png');
+                        canvas.toDataURL(
+                            'image/png'
+                        );
+
 
                     link.click();
 
-                });
+                }
+                catch (error) {
 
-            });
+                    console.error(error);
+
+                    alert(
+                        'Download failed'
+                    );
+
+                }
 
 
-        /* Default Google Logo */
+                button.disabled = false;
 
-        getSelectedLogo();
+                button.innerHTML =
+                    '<i class="fas fa-download"></i> Download PNG';
+
+            }
+        );
+
+
+        updateLogo();
 
     </script>
 
